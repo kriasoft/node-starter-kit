@@ -57,9 +57,11 @@ type QueryRoot {
   user(userId: String!): User
   story(storyId: String!): Story
   comment(commentId: String!): Comment
+  category(categoryId: String!): Category
   users: [User]
   stories: [Story]
   comments: [Comment]
   activity: [Topics]
+  categories: [Category]
 }
 ```
