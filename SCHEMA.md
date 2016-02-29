@@ -1,23 +1,65 @@
 # GraphQL Schema
 
 ```
-type User {
-  id: ID!,
-  name: String,
-  email: String,
-  picture(size: Int): Url,
-  friends: [User]!
+type Location {
+  city: String
+  country: String
 }
 
-type Event {
-  id: ID!,
-  title: String!,
-  location: String!,
-  attendees: [User]!
+type User {
+  id: String!
+  name: String
+  location: Location
+  avatar(size: Int): Url,
+  stories: [Story]
+  comments: [Comment]
+  activity: [Topic]
+}
+
+interface Topic {
+  id: String!
+  title: String
+  text: String
+}
+
+type Story : Topic {
+  id: String!
+  author: [User]
+  dateline: {
+     when: DateTime
+     where: Location
+  }
+  title: String
+  text: String
+  comments: [Comment]
+  categories: [Category]
+}
+
+type Comment : Topic {
+  id: String!
+  author: User
+  dateline: {
+     when: DateTime
+     where: Location
+  }
+  title: String
+  text: String
+}
+
+type Category {
+  name: String!
+  description: String
+  Stories: [Story]
 }
 
 type QueryRoot {
-  me: User,
-  events: [Event]!
+  me: User
+  user(userId: String!): User
+  story(storyId: String!): Story
+  comment(commentId: String!): Comment
+  users: [User]
+  stories: [Story]
+  comments: [Comment]
+  activity: [Topics]
 }
 ```
