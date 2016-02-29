@@ -24,7 +24,7 @@ interface Topic {
 
 type Story : Topic {
   id: String!
-  author: [User]
+  author: User
   dateline: {
      when: DateTime
      where: Location
