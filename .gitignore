@@ -1,0 +1,35 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+# Compiled output
+.build
+
+# Secrets
+/env/*.override
+
+# Yarn package manager
+# https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Logs
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+/.cache
+.eslintcache
+
+# Editors and IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+
+# macOS
+.DS_Store

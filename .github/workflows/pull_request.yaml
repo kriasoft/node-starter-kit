@@ -1,0 +1,42 @@
+# Compile, bundle, and upload application bundles
+# to a cloud storage on each pull request to "main".
+# https://help.github.com/actions
+
+name: PR
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  CI: true
+  VERSION: ${{ github.event.pull_request.number }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+
+      # Analyze code for potential problems
+      - run: yarn prettier --check .
+      - run: yarn lint --no-cache
+
+      # Test
+      # - run: yarn test
+
+      # Compile
+      - run: yarn build
+
+      # Upload to a cloud storage bucket
+      # - run: yarn push
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      # - run: yarn deploy
