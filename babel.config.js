@@ -6,7 +6,15 @@
  */
 
 module.exports = {
-  presets: [["@babel/preset-typescript"]],
-  plugins: ["@babel/plugin-proposal-class-properties"],
+  presets: [
+    ["@babel/preset-env", { targets: { node: "14" } }],
+    ["@babel/preset-typescript", { allowDeclareFields: true }],
+  ],
+
+  plugins: [
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: true }],
+  ],
+
   ignore: [".build/**", ".vscode/**", ".yarn/**", "migrations/**"],
 };

@@ -2,10 +2,10 @@
  * @copyright 2016-present Kriasoft (https://git.io/JYNud)
  */
 
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import run from "@rollup/plugin-run";
 import pkg from "./package.json";
 
@@ -36,13 +36,16 @@ const config = {
       extensions: [".ts", ".mjs", ".js", ".json", ".node"],
       modulesOnly: true,
     }),
+
     commonjs(),
+
     json(),
+
     babel({
       extensions: [".ts", ".js", ".mjs"],
       babelHelpers: "bundled",
-      include: ["auth/**", "env/**", "functions/**"],
     }),
+
     isWatch && run({ execArgv: ["-r", "source-map-support/register"] }),
   ],
 

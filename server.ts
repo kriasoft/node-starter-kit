@@ -3,8 +3,8 @@
  */
 
 import express from "express";
-import { auth } from "./auth";
 import { api } from "./api";
+import { auth } from "./auth";
 
 const app = express();
 const port = process.env.PORT ?? 8080;

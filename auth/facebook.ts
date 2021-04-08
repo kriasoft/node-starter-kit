@@ -22,12 +22,8 @@ const client = new AuthorizationCode({
 });
 
 export const redirect: RequestHandler = function (req, res) {
-  const redirect_uri = env.isProduction
-    ? `${env.APP_ORIGIN}${req.originalUrl}/return`
-    : `${req.protocol}://${req.get("host")}${req.originalUrl}/return`;
-
   const authorizeUrl = client.authorizeURL({
-    redirect_uri,
+    redirect_uri: req.app.locals["redirect_uri"],
     scope,
   });
 
@@ -36,13 +32,9 @@ export const redirect: RequestHandler = function (req, res) {
 
 export const callback: RequestHandler = async function (req, res, next) {
   try {
-    const redirect_uri = env.isProduction
-      ? `${env.APP_ORIGIN}${req.originalUrl}`
-      : `${req.protocol}://${req.get("host")}${req.originalUrl}`;
-
     const { token } = await client.getToken({
       code: req.query.code as string,
-      redirect_uri,
+      redirect_uri: req.app.locals["redirect_uri"],
       scope,
     });
 
