@@ -32,6 +32,7 @@
     "eslintcache",
     "esmodules",
     "esnext",
+    "idps",
     "gamecenter",
     "globby",
     "gsutil",
@@ -58,8 +59,10 @@
     "psql",
     "sendgrid",
     "sourcemap",
+    "spdx",
     "tslib",
     "typechecking",
+    "upsert",
     "webflow",
     "yarnpkg",
     "yarnrc"

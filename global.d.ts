@@ -1,8 +1,7 @@
-/**
- * @copyright 2016-present Kriasoft (https://git.io/JYNud)
- */
+/* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
+/* SPDX-License-Identifier: MIT */
 
-import type { User } from "./models";
+import type { User } from "./db";
 
 declare global {
   namespace Express {

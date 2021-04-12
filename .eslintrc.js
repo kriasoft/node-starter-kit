@@ -1,12 +1,12 @@
+/* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
+/* SPDX-License-Identifier: MIT */
+
 /**
  * ESLint configuration.
  *
  * @see https://eslint.org/docs/user-guide/configuring
  * @type {import("eslint").Linter.Config}
- *
- * @copyright 2016-present Kriasoft (https://git.io/JYNud)
  */
-
 module.exports = {
   root: true,
 
@@ -23,7 +23,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ["*.ts"],
+      files: ["*.ts", ".tsx"],
       parser: "@typescript-eslint/parser",
       extends: ["plugin:@typescript-eslint/recommended"],
       plugins: ["@typescript-eslint"],
@@ -42,6 +42,12 @@ module.exports = {
       files: ["rollup.config.js"],
       parserOptions: {
         sourceType: "module",
+      },
+    },
+    {
+      files: ["db/types.ts"],
+      rules: {
+        "@typescript-eslint/no-explicit-any": "off",
       },
     },
   ],

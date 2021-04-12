@@ -9,30 +9,29 @@ import env from "../env";
 import authorize from "./authorize";
 import { createState, verifyState } from "./state";
 
-const scope = ["email"];
-const version = "v10.0";
-
 /**
- * OAuth 2.0 client for Facebook.
+ * OAuth 2.0 client for GitHub.
  *
- * @see https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
+ * @see https://github.com/lelylan/simple-oauth2
+ * @see https://docs.github.com/en/developers/apps/authorizing-oauth-apps
  */
 const oauth = new AuthorizationCode({
-  client: { id: env.FACEBOOK_APP_ID, secret: env.FACEBOOK_APP_SECRET },
+  client: { id: env.GITHUB_CLIENT_ID, secret: env.GITHUB_CLIENT_SECRET },
   auth: {
-    tokenHost: "https://graph.facebook.com",
-    tokenPath: `/${version}/oauth/access_token`,
-    authorizeHost: "https://www.facebook.com",
-    authorizePath: `/${version}/dialog/oauth`,
+    tokenHost: "https://github.com",
+    tokenPath: "/login/oauth/access_token",
+    authorizeHost: "https://github.com",
+    authorizePath: "/login/oauth/authorize",
   },
 });
 
 /**
- * Redirects user to Facebook login page.
+ * Redirects user to GitHub login page.
  */
 export const redirect: RequestHandler = function (req, res) {
+  const scope = (req.query.scope as string) ?? "";
+  const state = createState({ scope });
   const { redirect_uri } = req.app.locals;
-  const state = createState({});
   const authorizeUrl = oauth.authorizeURL({ redirect_uri, scope, state });
   res.redirect(authorizeUrl);
 };
@@ -43,31 +42,37 @@ export const redirect: RequestHandler = function (req, res) {
  */
 export const callback: RequestHandler = async function (req, res, next) {
   try {
-    verifyState(req.query.state as string);
+    const { scope } = verifyState(req.query.state as string) as {
+      scope?: string;
+    };
     const { code } = req.query as { code: string };
     const { redirect_uri } = req.app.locals;
     const { token } = await oauth.getToken({ code, redirect_uri, scope });
 
     // Fetch profile information
-    // https://developers.facebook.com/docs/graph-api/reference/user
-    const { access_token } = token;
-    const profile = await got
-      .get({
-        url: `https://graph.facebook.com/${version}/me`,
-        searchParams: { access_token, fields: "id,name,email,picture" },
-      })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .json<{ id: string; name: string; email?: string; picture?: any }>();
+    const profile = await got("https://api.github.com/user", {
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `token ${token.access_token}`,
+      },
+    }).json<{
+      id: number;
+      login: string;
+      avatar_url: string;
+      name: string;
+      email: string;
+    }>();
 
     // Link OAuth credentials with the user account.
     const user = await authorize(req, {
-      id: profile.id,
-      provider: IdentityProvider.Facebook,
-      name: profile.name,
+      id: String(profile.id),
+      provider: IdentityProvider.GitHub,
+      username: profile.login,
       email: profile.email,
-      email_verified: profile.email ? true : false,
-      picture: profile.picture?.data,
-      credentials: token,
+      email_verified: true,
+      name: profile.name,
+      picture: profile.avatar_url,
+      credentials: (token as unknown) as Record<string, string>,
     });
 
     res.render("auth-callback", { data: { user }, layout: false });

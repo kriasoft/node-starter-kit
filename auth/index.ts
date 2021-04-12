@@ -1,27 +1,41 @@
-/**
- * @copyright 2016-present Kriasoft (https://git.io/JYNud)
- */
+/* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
+/* SPDX-License-Identifier: MIT */
 
-import { RequestHandler, Router } from "express";
+import { ErrorRequestHandler, Router } from "express";
 import env from "../env";
 import * as facebook from "./facebook";
+import * as github from "./github";
+import * as google from "./google";
 import session from "./session";
 
-export const auth = Router();
-
-const common: RequestHandler = function (req, res, next) {
-  const [, prefix, provider] = req.path.split("/");
-  req.app.locals["redirect_uri"] = env.isProduction
-    ? `${env.APP_ORIGIN}/${prefix}/${provider}/return`
-    : `${req.protocol}://${req.get("host")}/${prefix}/${provider}/return`;
-
-  res.setHeader("Cache-Control", "no-store");
-  next();
-};
+const auth = Router();
 
 auth.use(session);
 
-auth.get("/auth/facebook", common, facebook.redirect);
-auth.get("/auth/facebook/return", common, facebook.callback);
+auth.use("/auth", function (req, res, next) {
+  // Ensure that OAuth 2.0 redirect URI will work from behind a proxy
+  const [, provider] = req.path.split("/");
+  req.app.locals.redirect_uri = env.isProduction
+    ? `${env.APP_ORIGIN}/auth/${provider}/return`
+    : `${req.protocol}://${req.get("host")}/auth/${provider}/return`;
+  // Disable cache for authentication requests
+  res.setHeader("Cache-Control", "no-store");
+  next();
+});
 
-export { session };
+auth.get("/auth/facebook", facebook.redirect);
+auth.get("/auth/facebook/return", facebook.callback);
+
+auth.get("/auth/github", github.redirect);
+auth.get("/auth/github/return", github.callback);
+
+auth.get("/auth/google", google.redirect);
+auth.get("/auth/google/return", google.callback);
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+auth.use(function handleError(error, req, res, next) {
+  console.warn(error);
+  res.render("auth-callback", { error, data: null, layout: false });
+} as ErrorRequestHandler);
+
+export { auth };

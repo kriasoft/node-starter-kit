@@ -1,20 +1,17 @@
+/* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
+/* SPDX-License-Identifier: MIT */
+
 /**
  * Babel configuration.
  *
- * @copyright 2016-present Kriasoft (https://git.io/JYNud)
- * @type {import("@babel/core")}
+ * @see https://babeljs.io/docs/en/options
+ * @type {import("@babel/core").TransformOptions}
  */
-
 module.exports = {
   presets: [
-    ["@babel/preset-env", { targets: { node: "14" } }],
+    ["@babel/preset-env", { targets: { node: 14 } }],
     ["@babel/preset-typescript", { allowDeclareFields: true }],
   ],
 
-  plugins: [
-    "@babel/plugin-proposal-class-properties",
-    ["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: true }],
-  ],
-
-  ignore: [".build/**", ".vscode/**", ".yarn/**", "migrations/**"],
+  plugins: [["@babel/plugin-proposal-class-properties", { loose: true }]],
 };

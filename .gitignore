@@ -1,11 +1,12 @@
 # Include your project-specific ignores in this file
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 
-# Compiled output
+.backup
 .build
 
 # Secrets
-/env/*.override
+/env/.env.override
+/env/.env.*.override
 
 # Yarn package manager
 # https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored

@@ -1,16 +1,21 @@
-/**
- * @copyright 2016-present Kriasoft (https://git.io/JYNud)
- */
+/* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
+/* SPDX-License-Identifier: MIT */
 
 import cookie from "cookie";
 import { Request, RequestHandler, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../data";
+import type { User } from "../db";
+import db from "../db";
 import env from "../env";
+
+// The name of the session (ID) cookie.
+const cookieName = env.isProduction
+  ? "id"
+  : `id_${env.APP_NAME?.replace(/^W/g, "")}`;
 
 async function getUser(req: Request): Promise<User | null> {
   const cookies = cookie.parse(req.headers.cookie || "");
-  const sessionCookie = cookies[env.JWT_COOKIE];
+  const sessionCookie = cookies[cookieName];
 
   if (sessionCookie) {
     try {
@@ -51,13 +56,13 @@ async function signIn(
   const sessionCookie = jwt.sign({}, env.JWT_SECRET, {
     issuer: env.APP_ORIGIN,
     audience: env.APP_NAME,
-    subject: user.id,
+    subject: String(user.id),
     expiresIn: env.JWT_EXPIRES,
   });
 
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize(env.JWT_COOKIE, sessionCookie, {
+    cookie.serialize(cookieName, sessionCookie, {
       httpOnly: true,
       maxAge: env.JWT_EXPIRES,
       secure: env.isProduction,
@@ -70,7 +75,7 @@ async function signIn(
 
 function signOut(req: Request, res: Response): void {
   req.user = null;
-  res.clearCookie(env.JWT_COOKIE);
+  res.clearCookie(cookieName);
 }
 
 const session: RequestHandler = async function session(req, res, next) {

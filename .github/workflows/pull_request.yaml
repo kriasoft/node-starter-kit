@@ -22,9 +22,10 @@ jobs:
       # Analyze code for potential problems
       - run: yarn prettier --check .
       - run: yarn lint --no-cache
+      - run: yarn tsc
 
       # Test
-      # - run: yarn test
+      - run: yarn test
 
       # Compile
       - run: yarn build
