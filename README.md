@@ -2,7 +2,7 @@
 
 <a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg?style=flat-square" height="20"></a>
 <a href="http://patreon.com/koistya"><img src="https://img.shields.io/badge/dynamic/json?color=%23ff424d&label=Patreon&style=flat-square&query=data.attributes.patron_count&suffix=%20patrons&url=https%3A%2F%2Fwww.patreon.com%2Fapi%2Fcampaigns%2F233228" height="20"></a>
-<a href="https://discord.gg/gx5pdvZ7Za"><img src="https://img.shields.io/discord/643523529131950086?label=Chat&style=flat-square" height="20"></a>
+<a href="https://discord.gg/GrqQaSnvmr"><img src="https://img.shields.io/discord/643523529131950086?label=Chat&style=flat-square" height="20"></a>
 <a href="https://github.com/kriasoft/node-starter-kit/stargazers"><img src="https://img.shields.io/github/stars/kriasoft/node-starter-kit.svg?style=social&label=Star&maxAge=3600" height="20"></a>
 <a href="https://twitter.com/koistya"><img src="https://img.shields.io/twitter/follow/koistya.svg?style=social&label=Follow&maxAge=3600" height="20"></a>
 
@@ -25,7 +25,7 @@ optimized for serverless infrastructure such as [Google Cloud Functions](https:/
 ---
 
 This project was bootstrapped with [Node.js Starter Kit](https://github.com/kriasoft/node-starter-kit).
-Be sure to join our [Discord channel](https://discord.com/invite/bSsv7XM) for assistance.
+Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for assistance.
 
 ## Tech Stack
 
@@ -43,8 +43,7 @@ Be sure to join our [Discord channel](https://discord.com/invite/bSsv7XM) for as
 `├──`[`db`](./db) — Database client for PostgreSQL using [Knex](https://knexjs.org/)<br>
 `├──`[`emails`](./emails) — Email templates (Handlebars)<br>
 `├──`[`env`](./env) — Environment variables for `local`, `dev`, `test`, and `prod`<br>
-`├──`[`migrations`](./migrations) — database schema migrations ([Cloud SQL](https://cloud.google.com/sql), [TypeORM](https://typeorm.io/))<br>
-`├──`[`models`](./models) — [TypeORM](https://typeorm.io/) data models<br>
+`├──`[`migrations`](./migrations) — database schema migrations ([Cloud SQL](https://cloud.google.com/sql), [Knex](https://knexjs.org/))<br>
 `├──`[`scripts`](./scripts) — Deployment scripts, REPL shell, etc.<br>
 `├──`[`test`](./test) — Unit tests and benchmarks<br>
 `├──`[`views`](./views) — HTML templates (Handlebars)<br>
