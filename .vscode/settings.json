@@ -17,6 +17,10 @@
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "sql-formatter.dialect": "pl/sql",
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
   "cSpell.ignoreWords": [
     "abcdefghijklmnopqrstuvwxyz",
     "browserslist",
