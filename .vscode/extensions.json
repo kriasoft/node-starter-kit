@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "adpyke.vscode-sql-formatter",
     "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
