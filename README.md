@@ -1,4 +1,4 @@
-# Node.js Starter Kit
+# Node.js API Starter Kit
 
 <a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg?style=flat-square" height="20"></a>
 <a href="http://patreon.com/koistya"><img src="https://img.shields.io/badge/dynamic/json?color=%23ff424d&label=Patreon&style=flat-square&query=data.attributes.patron_count&suffix=%20patrons&url=https%3A%2F%2Fwww.patreon.com%2Fapi%2Fcampaigns%2F233228" height="20"></a>
@@ -6,9 +6,11 @@
 <a href="https://github.com/kriasoft/node-starter-kit/stargazers"><img src="https://img.shields.io/github/stars/kriasoft/node-starter-kit.svg?style=social&label=Star&maxAge=3600" height="20"></a>
 <a href="https://twitter.com/koistya"><img src="https://img.shields.io/twitter/follow/koistya.svg?style=social&label=Follow&maxAge=3600" height="20"></a>
 
-Node.js Starter Kit is a project template for building Node.js applications
+Node.js API Starter Kit is a project template for building Node.js backend applications
 optimized for serverless infrastructure such as [Google Cloud Functions](https://cloud.google.com/functions),
 [AWS Lambda](https://aws.amazon.com/lambda/), [Azure Functions](https://azure.microsoft.com/services/functions/), etc.
+Use it as an API server for your front-end app, complimenting it with any API library or framework
+of your choice, such as [GraphQL.js](https://www.npmjs.com/package/graphql).
 
 ## Features
 
@@ -16,15 +18,15 @@ optimized for serverless infrastructure such as [Google Cloud Functions](https:/
 - Authentication and authorization using OAuth 2.0 providers (Google, Facebook, GitHub, etc.)
 - Stateless sessions implemented with JWT tokens and a session cookie (compatible with SSR)
 - Database schema migration, seeds, and REPL shell tooling
+- Transactional emails using Handlebars templates and instant email previews
 - Pre-configured unit testing tooling powered by [Jest](https://jestjs.io/) and [Supertest](https://github.com/visionmedia/supertest)
-- Multiple cloud functions within the same project (`auth`, `api`, `img`, etc.)
 - Application bundling with Rollup as an optimization technique for serverless deployments
 - Rebuilds and restarts the app on changes when running locally
 - Pre-configured for `local`, `dev`, `test`, and `prod` environments
 
 ---
 
-This project was bootstrapped with [Node.js Starter Kit](https://github.com/kriasoft/node-starter-kit).
+This project was bootstrapped with [Node.js API Starter Kit](https://github.com/kriasoft/node-starter-kit).
 Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for assistance.
 
 ## Tech Stack

@@ -66,8 +66,6 @@ export const callback: RequestHandler = async function (req, res, next) {
       credentials: (tokens as unknown) as Record<string, string>,
     });
 
-    console.log("user", user);
-
     res.render("auth-callback", { data: { user }, layout: false });
   } catch (err) {
     next(err);

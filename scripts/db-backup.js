@@ -20,6 +20,9 @@ const { EOL } = require("os");
 require("../env/config");
 
 const { APP_ENV, PGDATABASE } = process.env;
+const backupDir = path.join(__dirname, "../.backup");
+
+if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir);
 
 console.log(
   `Creating a backup of the ${greenBright(PGDATABASE)} (${APP_ENV}) database...`
@@ -76,7 +79,7 @@ cmd = cp
   });
 
 const timestamp = new Date().toISOString().replace(/(-|:|\.\d{3})/g, "");
-const file = path.resolve(__dirname, `../.backup/${timestamp}_${APP_ENV}.sql`);
+const file = path.join(backupDir, `${timestamp}_${APP_ENV}.sql`);
 const out = fs.createWriteStream(file, { encoding: "utf8" });
 const rl = readline.createInterface({ input: cmd.stdout, terminal: false });
 

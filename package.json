@@ -14,7 +14,7 @@
     "db:migrate": "knex migrate:latest",
     "db:rollback": "knex migrate:rollback",
     "db:seed": "knex seed:run",
-    "db:reset": "knex migrate:rollback 001_initial.js; knex migrate:latest",
+    "db:reset": "knex migrate:rollback 001_initial.js; knex migrate:latest && node ./scripts/update-types",
     "db:backup": "node ./scripts/db-backup",
     "db:restore": "node ./scripts/db-restore",
     "db:repl": "node --experimental-repl-await ./scripts/repl",
@@ -25,7 +25,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "email-templates": "^8.0.4",
@@ -45,12 +45,12 @@
     "simple-oauth2": "^4.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.15",
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-typescript": "^7.13.0",
-    "@babel/register": "^7.13.14",
+    "@babel/register": "^7.13.16",
     "@jest/types": "^26.6.2",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^18.0.0",
@@ -81,7 +81,7 @@
     "eslint-config-prettier": "^8.2.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
-    "knex-types": "^0.1.3",
+    "knex-types": "^0.2.0",
     "prettier": "^2.2.1",
     "rollup": "^2.45.2",
     "rollup-plugin-copy": "^3.4.0",
