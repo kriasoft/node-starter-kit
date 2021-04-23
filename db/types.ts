@@ -1,8 +1,6 @@
 // The TypeScript definitions below are automatically generated.
 // Do not touch them, or risk, your modifications being lost.
 
-import { Knex } from "knex";
-
 export enum IdentityProvider {
   Google = "google",
   Apple = "apple",
@@ -62,44 +60,3 @@ export type User = {
   updated_at: Date;
   deleted_at: Date | null;
 };
-
-export type IdentityRecord = {
-  id: Knex.Raw | string;
-  provider: Knex.Raw | IdentityProvider;
-  user_id: Knex.Raw | string;
-  username?: Knex.Raw | string | null;
-  email?: Knex.Raw | string | null;
-  credentials?: Knex.Raw | string;
-  created_at?: Knex.Raw | Date | string;
-  updated_at?: Knex.Raw | Date | string;
-};
-
-export type MigrationRecord = {
-  id?: Knex.Raw | number;
-  name?: Knex.Raw | string | null;
-  batch?: Knex.Raw | number | null;
-  migration_time?: Knex.Raw | Date | string | null;
-};
-
-export type MigrationLockRecord = {
-  index?: Knex.Raw | number;
-  is_locked?: Knex.Raw | number | null;
-};
-
-export type UserRecord = {
-  id: Knex.Raw | string;
-  username?: Knex.Raw | string | null;
-  email?: Knex.Raw | string | null;
-  email_verified?: Knex.Raw | boolean;
-  password?: Knex.Raw | string | null;
-  name?: Knex.Raw | string | null;
-  picture?: Knex.Raw | string;
-  time_zone?: Knex.Raw | string | null;
-  locale?: Knex.Raw | string | null;
-  admin?: Knex.Raw | boolean;
-  last_login?: Knex.Raw | Date | string | null;
-  created_at?: Knex.Raw | Date | string;
-  updated_at?: Knex.Raw | Date | string;
-  deleted_at?: Knex.Raw | Date | string | null;
-};
-
