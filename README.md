@@ -41,14 +41,14 @@ Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for
 `├──`[`.build`](.build) — Compiled and bundled output (per Cloud Function)<br>
 `├──`[`.vscode`](.vscode) — VSCode settings including code snippets, recommended extensions etc.<br>
 `├──`[`api`](./api) — Cloud Function for handling API requests<br>
-`├──`[`auth`](./auth) — Cloud Function for handling authentication<br>
+`├──`[`auth`](./auth) — Authentication and session middleware<br>
 `├──`[`db`](./db) — Database client for PostgreSQL using [Knex](https://knexjs.org/)<br>
-`├──`[`emails`](./emails) — Email templates (Handlebars)<br>
+`├──`[`emails`](./emails) — Email templates for transactional emails using [Handlebars](https://handlebarsjs.com/)<br>
 `├──`[`env`](./env) — Environment variables for `local`, `dev`, `test`, and `prod`<br>
 `├──`[`migrations`](./migrations) — database schema migrations ([Cloud SQL](https://cloud.google.com/sql), [Knex](https://knexjs.org/))<br>
 `├──`[`scripts`](./scripts) — Deployment scripts, REPL shell, etc.<br>
 `├──`[`test`](./test) — Unit tests and benchmarks<br>
-`├──`[`views`](./views) — HTML templates (Handlebars)<br>
+`├──`[`views`](./views) — HTML templates using [Handlebars](https://handlebarsjs.com/)<br>
 `└── ...` — add more cloud functions such as `worker`, `notifications`, etc.
 
 ## Requirements
@@ -99,9 +99,76 @@ Optionally set `APP_ENV` to `local` (default), `dev`, `test`, or `prod` before r
 
 ![](https://files.tarkus.me/node-starter-kit-db.svg)
 
+## How to Configure 0Auth 2.0 Login Flow
+
+For each 3rd party identity provider that needs to be enabled for your app, you
+will need to obtain application credentials, often called client ID/secret.
+
+### Google
+
+- Go to [Google Cloud Console](https://console.cloud.google.com/)
+- [Create a new GCP project](https://console.cloud.google.com/projectcreate)
+- [Configure OAuth concent screen](https://console.cloud.google.com/apis/credentials/consent)
+- [Create OAuth 2.0 client](https://console.cloud.google.com/apis/credentials/oauthclient)
+  with `http://localhost/auth/google/return` as the callback URL
+- Update `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` environment variables
+  found in [`./env/.env.*`](./env/) for each environment that you need.
+
+From there on, visiting [`http://localhost:8080/auth/google`](http://localhost:8080/auth/google)
+(or, opening it in a popup window) would initiate login flow via Google.
+
+### Facebook
+
+- Go to [Facebook Developer](https://developers.facebook.com/apps/) website
+- Create a new Facebook App, enable Facebook Login for this app
+- Close Quickstart dialog and go straight to the app settings
+- Add `http://localhost/auth/facebook/return` as the callback URL for the login flow
+- Copy and paste the newly created Facebook App ID and secret to
+  `FACEBOOK_APP_ID`, `FACEBOOK_APP_SECRET` variables found in [`env/.env.*`](./env/)
+  files for each environment that you need.
+
+From there on, visiting [`http://localhost:8080/auth/facebook`](http://localhost:8080/auth/facebook)
+(or, opening it in a popup window) would initiate login flow via Facebook.
+
+## How to Deploy
+
+The deployment script (`yarn deploy`) relies on Google Cloud CLI (`gcloud`) tool
+that you can download from [here](https://cloud.google.com/sdk/docs/install). For
+CI/CD workflows you may need a Docker image like [this one](https://github.com/marketplace/actions/google-cloud-platform-gcp-cli-gcloud).
+
+`gcloud auth login` — Authorize Google Cloud SDK (CLI) tool to use your Google account.
+
+[Create](https://console.cloud.google.com/projectcreate) a new GCP project for
+your app with IDs such as `example` for production, and `example-test` for test
+/ QA environments. Ensure that Cloud Build API and Cloud Functions API are
+enabled in your GCP project's settings [here](https://console.cloud.google.com/apis/library).
+
+Create a Cloud SQL database instance [here](https://console.cloud.google.com/sql)
+in the same region where your app needs to be deployed. Using a micro instance
+of Cloud SQL with 0.6 GB RAM should be OK for testing and low traffic websites.
+
+Ensure that `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_REGION`, `PGDATABASE`, `PGUSER`
+and the other environment variables are correctly set for the target deployment
+environment (e.g. [`/env/.env`](./env/.env) + [`/env/.env.prod`](./env/.env.prod)
+for production).
+
+Finally, compile and deploy the app by running:
+
+- `yarn build` — Compiles the app into the `.build` folder
+- `APP_ENV=<env> yarn db:migrate` — Migrates database (schema) to the latest version
+- `APP_ENV=<env> yarn deploy` — Deploys the app to Google Cloud Functions (GCF)
+
+Where `<env>` is the target environment, e.g. `APP_ENV=prod yarn deploy`.
+
+## How to Update
+
+- `yarn set version latest` — Bump Yarn to the latest version
+- `yarn upgrade-interactive` — Update Node.js modules (dependencies)
+- `yarn pnpify --sdk vscode` — Update TypeScript, ESLint, and Prettier settings in VSCode
+
 ## Related Projects
 
-- [GraphQL API Starter Kit](https://github.com/kriasoft/graphql-starter) — project template, pre-configured with TypeScript, GraphQL.js, React, and Relay.
+- [GraphQL API Starter Kit](https://github.com/kriasoft/graphql-starter) — monorepo template, pre-configured with TypeScript, GraphQL, React, and Relay.
 - [React Starter Kit](https://github.com/kriasoft/react-starter-kit) — project template, pre-configured with Webpack and React
 
 ## How to Contribute
