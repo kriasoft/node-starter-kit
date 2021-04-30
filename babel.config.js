@@ -13,5 +13,5 @@ module.exports = {
     ["@babel/preset-typescript", { allowDeclareFields: true }],
   ],
 
-  plugins: [["@babel/plugin-proposal-class-properties", { loose: true }]],
+  plugins: ["@babel/plugin-proposal-class-properties"],
 };

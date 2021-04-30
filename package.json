@@ -27,7 +27,6 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "cookie": "^0.4.1",
-    "dotenv": "^8.2.0",
     "email-templates": "^8.0.4",
     "envalid": "^7.1.0",
     "express": "^4.17.1",
@@ -46,9 +45,9 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.0",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.14.0",
     "@babel/preset-typescript": "^7.13.0",
     "@babel/register": "^7.13.16",
     "@jest/types": "^26.6.2",
@@ -65,11 +64,11 @@
     "@types/express": "^4.17.11",
     "@types/express-handlebars": "^3.1.0",
     "@types/http-errors": "^1.8.0",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/lodash": "^4.14.168",
     "@types/minimist": "^1.2.1",
-    "@types/node": "^14.14.41",
+    "@types/node": "^14.14.43",
     "@types/simple-oauth2": "^4.1.0",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -77,17 +76,21 @@
     "@yarnpkg/pnpify": "^3.0.0-rc.3",
     "babel-jest": "^26.6.3",
     "cross-spawn": "^7.0.3",
+    "envars": "^0.1.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "knex-types": "^0.2.0",
     "prettier": "^2.2.1",
-    "rollup": "^2.45.2",
+    "rollup": "^2.46.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "source-map-support": "^0.5.19",
     "supertest": "^6.1.3",
     "typescript": "^4.2.4"
+  },
+  "envars": {
+    "cwd": "./env"
   }
 }
