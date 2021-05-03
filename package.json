@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rollup -c --watch",
-    "build": "rollup -c && (cd .build && yarn && rm .yarn/install-state.gz)",
+    "build": "rollup -c && (cd .build && yarn && rm .yarn/*.* && rm -R .yarn/unplugged)",
     "lint": "eslint --cache --report-unused-disable-directives .",
     "test": "jest",
     "db:create": "node ./scripts/db-create && knex migrate:latest",
