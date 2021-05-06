@@ -9,7 +9,7 @@ import env from "../env";
  *
  * @see https://github.com/forwardemail/email-templates
  */
-export default new Email({
+export const email = new Email({
   message: {
     from: `"${env.APP_NAME}" <${env.EMAIL_FROM}>`,
   },

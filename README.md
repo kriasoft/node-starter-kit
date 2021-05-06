@@ -19,6 +19,7 @@ of your choice, such as [GraphQL.js](https://www.npmjs.com/package/graphql).
 - Stateless sessions implemented with JWT tokens and a session cookie (compatible with SSR)
 - Database schema migration, seeds, and REPL shell tooling
 - Transactional emails using Handlebars templates and instant email previews
+- Structured logs and error reporting to Google StackDriver
 - Pre-configured unit testing tooling powered by [Jest](https://jestjs.io/) and [Supertest](https://github.com/visionmedia/supertest)
 - Application bundling with Rollup as an optimization technique for serverless deployments
 - Rebuilds and restarts the app on changes when running locally
@@ -31,10 +32,14 @@ Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for
 
 ## Tech Stack
 
-- [Node.js](https://nodejs.org/) v14, [Yarn](https://yarnpkg.com/) package manager, [TypeScript](https://www.typescriptlang.org/), [Babel](https://babeljs.io/), [Rollup](https://rollupjs.org/)
+- [Node.js](https://nodejs.org/) v14, [Yarn](https://yarnpkg.com/) package manager,
+  [TypeScript](https://www.typescriptlang.org/), [Babel](https://babeljs.io/),
+  [Rollup](https://rollupjs.org/), [ESLint](https://eslint.org/),
+  [Prettier](https://prettier.io/), [Jest](https://jestjs.io/)
 - [PostgreSQL](https://www.postgresql.org/), [Knex](https://knesjs.org/),
-  [Express](https://expressjs.com/), [Handlebars](https://handlebarsjs.com/),
-  [Simple OAuth2](https://github.com/lelylan/simple-oauth2).
+  [Express](https://expressjs.com/), [Nodemailer](https://nodemailer.com/),
+  [Email Templates](https://email-templates.js.org/), [Handlebars](https://handlebarsjs.com/),
+  [Simple OAuth2](https://github.com/lelylan/simple-oauth2)
 
 ## Directory Structure
 
@@ -42,6 +47,7 @@ Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for
 `├──`[`.vscode`](.vscode) — VSCode settings including code snippets, recommended extensions etc.<br>
 `├──`[`api`](./api) — Cloud Function for handling API requests<br>
 `├──`[`auth`](./auth) — Authentication and session middleware<br>
+`├──`[`core`](./core) — Common application modules (email, logging, etc.)<br>
 `├──`[`db`](./db) — Database client for PostgreSQL using [Knex](https://knexjs.org/)<br>
 `├──`[`emails`](./emails) — Email templates for transactional emails using [Handlebars](https://handlebarsjs.com/)<br>
 `├──`[`env`](./env) — Environment variables for `local`, `dev`, `test`, and `prod`<br>

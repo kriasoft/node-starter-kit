@@ -10,6 +10,9 @@ import { withViews } from "./views";
 
 export const api = withViews(express());
 
+api.enable("trust proxy");
+api.disable("x-powered-by");
+
 // OAuth 2.0 authentication endpoints and user sessions
 api.use(auth);
 
@@ -34,7 +37,7 @@ api.use(handleError);
 /**
  * Launch API for testing when in development mode.
  *
- * NOTE: This block will be removed in production build by Rollup.
+ * NOTE: This block will be removed from production build by Rollup.
  */
 if (process.env.NODE_ENV === "development") {
   const port = process.env.PORT ?? 8080;

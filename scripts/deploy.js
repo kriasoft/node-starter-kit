@@ -40,7 +40,7 @@ spawn(
     `--source=./.build`,
     `--timeout=30`,
     `--trigger-http`,
-    `--set-env-vars=NODE_OPTIONS=--require ./.pnp.js`,
+    `--set-env-vars=NODE_OPTIONS=-r ./.pnp.js -r source-map-support/register`,
     ...Object.keys(env).map((key) => `--set-env-vars=${key}=${env[key]}`),
   ],
   { stdio: "inherit" }
