@@ -33,6 +33,7 @@
     "devtool",
     "downlevel",
     "envalid",
+    "envars",
     "eslintcache",
     "esmodules",
     "esnext",
