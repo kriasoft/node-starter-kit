@@ -60,11 +60,11 @@ export default async function authorize(
         email: identity.email,
         name: identity.name,
         picture: identity.picture
-          ? ((JSON.stringify(
+          ? (JSON.stringify(
               typeof identity.picture === "string"
                 ? { url: identity.picture }
                 : identity.picture
-            ) as unknown) as Record<string, unknown>)
+            ) as unknown as Record<string, unknown>)
           : db.raw("DEFAULT"),
       })
       .returning("*");
@@ -91,9 +91,9 @@ export default async function authorize(
           user_id: user.id,
           username: identity.username,
           email: identity.email,
-          credentials: (JSON.stringify(
+          credentials: JSON.stringify(
             identity.credentials
-          ) as unknown) as Record<string, unknown>,
+          ) as unknown as Record<string, unknown>,
           updated_at: db.fn.now(),
         });
     } else {
@@ -103,9 +103,10 @@ export default async function authorize(
         user_id: user.id,
         username: identity.username,
         email: identity.email,
-        credentials: (JSON.stringify(
-          identity.credentials
-        ) as unknown) as Record<string, unknown>,
+        credentials: JSON.stringify(identity.credentials) as unknown as Record<
+          string,
+          unknown
+        >,
       });
     }
   }

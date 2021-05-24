@@ -48,6 +48,7 @@ const config = {
             const pkg = JSON.parse(content);
             delete pkg.scripts;
             delete pkg.devDependencies;
+            delete pkg.envars;
             return JSON.stringify(pkg, null, "  ");
           },
         },
