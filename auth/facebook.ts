@@ -61,8 +61,8 @@ export const callback: RequestHandler = async function (req, res, next) {
 
     // Link OAuth credentials with the user account.
     const user = await authorize(req, {
-      id: profile.id,
       provider: IdentityProvider.Facebook,
+      provider_id: profile.id,
       name: profile.name,
       email: profile.email,
       email_verified: profile.email ? true : false,

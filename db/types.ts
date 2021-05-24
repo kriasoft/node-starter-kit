@@ -22,9 +22,9 @@ export enum Table {
 }
 
 export type Identity = {
-  id: string;
-  provider: IdentityProvider;
   user_id: string;
+  provider: IdentityProvider;
+  provider_id: string;
   username: string | null;
   email: string | null;
   credentials: Record<string, unknown>;
@@ -60,3 +60,4 @@ export type User = {
   updated_at: Date;
   deleted_at: Date | null;
 };
+

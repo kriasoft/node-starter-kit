@@ -35,6 +35,7 @@ module.exports.up = async function up(db) {
   await db.raw(`CREATE DOMAIN email AS citext CHECK (VALUE ~ '^[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}$')`); // prettier-ignore
   await db.raw(`CREATE TYPE identity_provider AS ENUM (${idps.map(x => `'${x}'`).join(', ')})`); // prettier-ignore
 
+  // Registered user accounts
   await db.schema.createTable("user", (table) => {
     table.specificType("id", "short_id").notNullable().primary();
     table.specificType("username", "username").unique();
@@ -51,10 +52,8 @@ module.exports.up = async function up(db) {
     table.timestamp("deleted_at");
   });
 
+  // 3rd party user credentials such as Google, Apple, etc.
   await db.schema.createTable("identity", (table) => {
-    // User identifier provided by a 3rd party identity provider
-    table.string("id", 36).notNullable();
-    table.specificType("provider", "identity_provider").notNullable();
     table
       .specificType("user_id", "short_id")
       .notNullable()
@@ -62,12 +61,14 @@ module.exports.up = async function up(db) {
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
       .index();
+    table.specificType("provider", "identity_provider").notNullable();
+    table.string("provider_id", 36).notNullable();
     table.specificType("username", "citext").index();
     table.specificType("email", "citext").index();
     // Access, refresh tokens, scope, and expiration date(s)
     table.jsonb("credentials").notNullable().defaultTo({});
     table.timestamps(false, true);
-    table.primary(["provider", "id"]);
+    table.primary(["provider", "provider_id"]);
   });
 };
 

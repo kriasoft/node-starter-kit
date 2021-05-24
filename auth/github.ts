@@ -65,8 +65,8 @@ export const callback: RequestHandler = async function (req, res, next) {
 
     // Link OAuth credentials with the user account.
     const user = await authorize(req, {
-      id: String(profile.id),
       provider: IdentityProvider.GitHub,
+      provider_id: String(profile.id),
       username: profile.login,
       email: profile.email,
       email_verified: true,

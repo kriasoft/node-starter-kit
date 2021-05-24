@@ -57,8 +57,8 @@ export const callback: RequestHandler = async function (req, res, next) {
 
     // Link OAuth credentials with the user account.
     const user = await authorize(req, {
-      id: userId,
       provider: IdentityProvider.Google,
+      provider_id: userId,
       email: profile.email,
       email_verified: profile.email_verified,
       name: profile.name,

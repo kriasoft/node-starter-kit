@@ -5,8 +5,6 @@ import { Request } from "express";
 import type { Identity, User } from "../db";
 import db from "../db";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 /**
  * Links OAuth credentials (identity) to a user account.
  */
@@ -27,9 +25,9 @@ export default async function authorize(
       .table<Identity>("identity")
       .leftJoin<User>("user", "user.id", "identity.user_id")
       .where({
-        "identity.id": identity.id,
         "identity.provider": identity.provider,
-      } as any)
+        "identity.provider_id": identity.provider_id,
+      } as Record<string, unknown>)
       .first<User>("user.*");
   }
 
@@ -72,7 +70,7 @@ export default async function authorize(
 
   // Link credentials to user account
   if (user) {
-    const key = { provider: identity.provider, id: identity.id };
+    const key = { provider: identity.provider, provider_id: identity.provider_id };
     const dbIdentity = await db.table<Identity>("identity").where(key).first();
 
     if (dbIdentity) {
@@ -86,9 +84,9 @@ export default async function authorize(
         .table<Identity>("identity")
         .where(key)
         .update({
-          id: identity.id,
-          provider: identity.provider,
           user_id: user.id,
+          provider: identity.provider,
+          provider_id: identity.provider_id,
           username: identity.username,
           email: identity.email,
           credentials: JSON.stringify(
@@ -98,9 +96,9 @@ export default async function authorize(
         });
     } else {
       await db.table<Identity>("identity").insert({
-        id: identity.id,
-        provider: identity.provider,
         user_id: user.id,
+        provider: identity.provider,
+        provider_id: identity.provider_id,
         username: identity.username,
         email: identity.email,
         credentials: JSON.stringify(identity.credentials) as unknown as Record<
