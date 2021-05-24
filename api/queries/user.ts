@@ -7,6 +7,15 @@ import db from "../../db";
 import type { Context } from "../context";
 import { UserType } from "../types";
 
+/**
+ * @example
+ *   query {
+ *     user(username: "john") {
+ *       id
+ *       email
+ *     }
+ *   }
+ */
 export const user: GraphQLFieldConfig<User, Context> = {
   description: "Find user by username or email.",
   type: UserType,

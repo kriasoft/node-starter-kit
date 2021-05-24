@@ -39,6 +39,7 @@
     "esnext",
     "idps",
     "gamecenter",
+    "GraphQLID",
     "gsutil",
     "jsonb",
     "knexfile",

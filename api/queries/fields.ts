@@ -5,10 +5,19 @@ import { GraphQLFieldConfig, GraphQLInt, GraphQLNonNull } from "graphql";
 import type { Knex } from "knex";
 import { Context } from "../context";
 
-export const countField: GraphQLFieldConfig<
-  { query: Knex.QueryBuilder },
-  Context
-> = {
+type Source = { query: Knex.QueryBuilder };
+
+/**
+ * The total count field definition.
+ *
+ * @example
+ *   query {
+ *     users {
+ *       totalCount
+ *     }
+ *   }
+ */
+export const countField: GraphQLFieldConfig<Source, Context> = {
   type: new GraphQLNonNull(GraphQLInt),
 
   async resolve(self) {

@@ -10,6 +10,19 @@ import { Context } from "../context";
 import { UserType } from "../types";
 import { countField } from "./fields";
 
+/**
+ * @example
+ *   query {
+ *     users(first: 10) {
+ *       edges {
+ *         user: node {
+ *           id
+ *           email
+ *         }
+ *       }
+ *     }
+ *   }
+ */
 export const users: GraphQLFieldConfig<unknown, Context> = {
   type: connectionDefinitions({
     name: "User",

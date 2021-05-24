@@ -11,13 +11,7 @@ import handlebars from "express-handlebars";
  * @see https://www.npmjs.com/package/express-handlebars
  */
 export function withViews<T extends Express>(app: T): T {
-  app.engine(
-    ".hbs",
-    handlebars({
-      extname: ".hbs",
-      helpers: { json },
-    })
-  );
+  app.engine(".hbs", handlebars({ extname: ".hbs", helpers: { json } }));
   app.set("view engine", ".hbs");
   return app;
 }

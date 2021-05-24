@@ -1,6 +1,10 @@
 /* SPDX-FileCopyrightText: 2016-present Kriasoft <hello@kriasoft.com> */
 /* SPDX-License-Identifier: MIT */
 
+// These helper functions are intended to be used in data loaders for mapping
+// entity keys to entity values (db records). See `../context.ts`.
+// https://github.com/graphql/dataloader
+
 export function mapTo<R, K>(
   records: ReadonlyArray<R>,
   keys: ReadonlyArray<K>,

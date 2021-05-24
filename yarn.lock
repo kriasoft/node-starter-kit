@@ -1485,9 +1485,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google-cloud/logging@npm:^9.2.3":
-  version: 9.2.3
-  resolution: "@google-cloud/logging@npm:9.2.3"
+"@google-cloud/logging@npm:^9.3.0":
+  version: 9.3.0
+  resolution: "@google-cloud/logging@npm:9.3.0"
   dependencies:
     "@google-cloud/common": ^3.4.1
     "@google-cloud/paginator": ^3.0.0
@@ -1504,7 +1504,7 @@ __metadata:
     on-finished: ^2.3.0
     pumpify: ^2.0.1
     stream-events: ^1.0.5
-  checksum: 8a6e7215fd4ee8149c9074e32373a677754c124614cec9942ae4e4e7c872c65564bca9de969e638e94d4817a6dc4de7c0d21c4ff82063f14a02aafb6e87b98a1
+  checksum: 04b76400598b7a54e0eefc1e9d521e8058030581d7c88a7cb94ed89d3177afec1b1eb4a927b17de6e23c5a85ce83033d9f59187fc163300d972e82ed765d4038
   languageName: node
   linkType: hard
 
@@ -2619,6 +2619,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/validator@npm:^13.1.3":
+  version: 13.1.3
+  resolution: "@types/validator@npm:13.1.3"
+  checksum: 47e1de4aebd3efbf97deea2d0f72b2308c924f95833c7a18d4f5d7cbd500f875fed9afd85038022ca352e3effb82241de149e5f1cbb32957b99fd7b0484641f3
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 20.2.0
   resolution: "@types/yargs-parser@npm:20.2.0"
@@ -3103,7 +3110,7 @@ __metadata:
     "@babel/preset-env": ^7.14.2
     "@babel/preset-typescript": ^7.13.0
     "@babel/register": ^7.13.16
-    "@google-cloud/logging": ^9.2.3
+    "@google-cloud/logging": ^9.3.0
     "@jest/types": ^26.6.2
     "@rollup/plugin-babel": ^5.3.0
     "@rollup/plugin-commonjs": ^19.0.0
@@ -3126,6 +3133,7 @@ __metadata:
     "@types/node": ^14.17.0
     "@types/simple-oauth2": ^4.1.0
     "@types/supertest": ^2.0.11
+    "@types/validator": ^13.1.3
     "@typescript-eslint/eslint-plugin": ^4.24.0
     "@typescript-eslint/parser": ^4.24.0
     "@yarnpkg/pnpify": ^3.0.0-rc.3
@@ -3167,6 +3175,8 @@ __metadata:
     source-map-support: ^0.5.19
     supertest: ^6.1.3
     typescript: ^4.2.4
+    validator: ^13.6.0
+    validator-fluent: ^0.4.2
   languageName: unknown
   linkType: soft
 
@@ -11545,6 +11555,22 @@ typescript@^4.2.4:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 940899bd4eacfa012ceecb10a5814ba0e8103da5243aa74d0d62f1f8a405efcd23e034fb7193e2d05b392870c53aabcb1f66439b062075cdcb28bc5d562a8ff6
+  languageName: node
+  linkType: hard
+
+"validator-fluent@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "validator-fluent@npm:0.4.2"
+  peerDependencies:
+    validator: ^13.5.2
+  checksum: 939066f7fe7c293453758e73eb03c0702e24a483a05436e7c373cb4e0b7fa36657d862b90ad2183dad2370a3b88c3ddf619d59f8e8aa23008511a4bd6844260b
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.6.0":
+  version: 13.6.0
+  resolution: "validator@npm:13.6.0"
+  checksum: 6ae43bfd47ae7e3ed5803c6fff949c5cbabb4d248af38fce0ccafb637c85db8c0c5cee2a91817242865de4f5970d61de809f0975910ec78282307ffd23249466
   languageName: node
   linkType: hard
 
