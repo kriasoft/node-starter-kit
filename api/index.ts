@@ -6,6 +6,7 @@ import express from "express";
 import { NotFound } from "http-errors";
 import { auth } from "../auth";
 import { handleError } from "./errors";
+import { graphql } from "./graphql";
 import { withViews } from "./views";
 
 export const api = withViews(express());
@@ -16,12 +17,11 @@ api.disable("x-powered-by");
 // OAuth 2.0 authentication endpoints and user sessions
 api.use(auth);
 
+// GraphQL API middleware
+api.use("/api", graphql);
+
 api.get("/", (req, res) => {
   res.render("home");
-});
-
-api.get("/api/", function (req, res) {
-  res.send(`Hello from API!`);
 });
 
 api.get("/favicon.ico", function (req, res) {

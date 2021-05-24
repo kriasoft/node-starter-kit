@@ -9,14 +9,14 @@
 Node.js API Starter Kit is a project template for building Node.js backend applications
 optimized for serverless infrastructure such as [Google Cloud Functions](https://cloud.google.com/functions),
 [AWS Lambda](https://aws.amazon.com/lambda/), [Azure Functions](https://azure.microsoft.com/services/functions/), etc.
-Use it as an API server for your front-end app, complimenting it with any API library or framework
-of your choice, such as [GraphQL.js](https://www.npmjs.com/package/graphql).
+Use it as an API server for your front-end app.
 
 ## Features
 
 - Database first design; auto-generated strongly typed data models (TypeScript)
 - Authentication and authorization using OAuth 2.0 providers (Google, Facebook, GitHub, etc.)
 - Stateless sessions implemented with JWT tokens and a session cookie (compatible with SSR)
+- GraphQL API example, implemented using the code-first development approach
 - Database schema migration, seeds, and REPL shell tooling
 - Transactional emails using Handlebars templates and instant email previews
 - Structured logs and error reporting to Google StackDriver
@@ -24,6 +24,8 @@ of your choice, such as [GraphQL.js](https://www.npmjs.com/package/graphql).
 - Application bundling with Rollup as an optimization technique for serverless deployments
 - Rebuilds and restarts the app on changes when running locally
 - Pre-configured for `local`, `dev`, `test`, and `prod` environments
+
+![](https://files.tarkus.me/graphql-api.png)
 
 ---
 
@@ -36,16 +38,16 @@ Be sure to join our [Discord channel](https://discord.com/invite/GrqQaSnvmr) for
   [TypeScript](https://www.typescriptlang.org/), [Babel](https://babeljs.io/),
   [Rollup](https://rollupjs.org/), [ESLint](https://eslint.org/),
   [Prettier](https://prettier.io/), [Jest](https://jestjs.io/)
-- [PostgreSQL](https://www.postgresql.org/), [Knex](https://knesjs.org/),
-  [Express](https://expressjs.com/), [Nodemailer](https://nodemailer.com/),
-  [Email Templates](https://email-templates.js.org/), [Handlebars](https://handlebarsjs.com/),
-  [Simple OAuth2](https://github.com/lelylan/simple-oauth2)
+- [PostgreSQL](https://www.postgresql.org/), [GraphQL.js](https://github.com/graphql/graphql-js),
+  [Knex](https://knesjs.org/), [Express](https://expressjs.com/),
+  [Nodemailer](https://nodemailer.com/),[Email Templates](https://email-templates.js.org/),
+  [Handlebars](https://handlebarsjs.com/), [Simple OAuth2](https://github.com/lelylan/simple-oauth2)
 
 ## Directory Structure
 
 `├──`[`.build`](.build) — Compiled and bundled output (per Cloud Function)<br>
 `├──`[`.vscode`](.vscode) — VSCode settings including code snippets, recommended extensions etc.<br>
-`├──`[`api`](./api) — Cloud Function for handling API requests<br>
+`├──`[`api`](./api) — Cloud Function for handling API requests using [GraphQL.js](https://github.com/graphql/graphql-js)<br>
 `├──`[`auth`](./auth) — Authentication and session middleware<br>
 `├──`[`core`](./core) — Common application modules (email, logging, etc.)<br>
 `├──`[`db`](./db) — Database client for PostgreSQL using [Knex](https://knexjs.org/)<br>

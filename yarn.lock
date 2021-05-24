@@ -2347,6 +2347,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/graphql-relay@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@types/graphql-relay@npm:0.6.0"
+  dependencies:
+    graphql: ^14.5.3 || ^15.0.0
+  checksum: d123310206a896df9ba56f00556b58f6590f63fe22bedf4e2aedd262953ab16816f3db234868a9574242f12f7234d04a36905c176cf1a7636d4d4e5dfc5dd4a5
+  languageName: node
+  linkType: hard
+
 "@types/html-to-text@npm:*":
   version: 6.0.0
   resolution: "@types/html-to-text@npm:6.0.0"
@@ -2894,7 +2903,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accepts@npm:~1.3.7":
+"accepts@npm:^1.3.7, accepts@npm:~1.3.7":
   version: 1.3.7
   resolution: "accepts@npm:1.3.7"
   dependencies:
@@ -3108,6 +3117,7 @@ __metadata:
     "@types/email-templates": ^8.0.3
     "@types/express": ^4.17.11
     "@types/express-handlebars": ^3.1.0
+    "@types/graphql-relay": ^0.6.0
     "@types/http-errors": ^1.8.0
     "@types/jest": ^26.0.23
     "@types/jsonwebtoken": ^8.5.1
@@ -3123,15 +3133,19 @@ __metadata:
     chalk: ^4.1.1
     cookie: ^0.4.1
     cross-spawn: ^7.0.3
+    dataloader: ^2.0.0
     email-templates: ^8.0.7
     envalid: ^7.1.0
     envars: ^0.1.0
     eslint: ^7.27.0
     eslint-config-prettier: ^8.3.0
     express: ^4.17.1
+    express-graphql: ^0.12.0
     express-handlebars: ^5.3.2
     google-auth-library: ^7.0.4
     got: ^11.8.2
+    graphql: ^15.5.0
+    graphql-relay: ^0.6.0
     handlebars: ^4.7.7
     http-errors: ^1.8.0
     husky: ^6.0.0
@@ -3141,6 +3155,7 @@ __metadata:
     knex-types: ^0.2.0
     lodash: ^4.17.21
     minimist: ^1.2.5
+    moment-timezone: ^0.5.33
     nanoid: ^3.1.23
     pg: ^8.6.0
     prettier: ^2.3.0
@@ -4157,7 +4172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"content-type@npm:~1.0.4":
+"content-type@npm:^1.0.4, content-type@npm:~1.0.4":
   version: 1.0.4
   resolution: "content-type@npm:1.0.4"
   checksum: ff6e19cbf281c23d5608723a6dc60ac97e2280bd4d21602511283112321e6c1555895e395555e367672b54a0f1585276284b7c3c8be313aca73902ac2f2609fd
@@ -4345,6 +4360,13 @@ __metadata:
     whatwg-mimetype: ^2.3.0
     whatwg-url: ^8.0.0
   checksum: 42239927c6a202e2d02b7f41c94ca53e3cea036898b97b8bf6120ed1b25e0dd11c48ec7aa5c84cf807c2cb9f3a637df9fb50f3ca25a52863186a4ac46254726b
+  languageName: node
+  linkType: hard
+
+"dataloader@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "dataloader@npm:2.0.0"
+  checksum: 0165c2e80751d269c33d2a14b0078a4f3853cb010e2531e7aa99523aba8d0cdc922b9ad67e4c2bb9074c90e0ee0a41b6e7f5f63c40d31224a71c8a0b703f4be3
   languageName: node
   linkType: hard
 
@@ -5227,6 +5249,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"express-graphql@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "express-graphql@npm:0.12.0"
+  dependencies:
+    accepts: ^1.3.7
+    content-type: ^1.0.4
+    http-errors: 1.8.0
+    raw-body: ^2.4.1
+  peerDependencies:
+    graphql: ^14.7.0 || ^15.3.0
+  checksum: d0b1aa947c7fcdb6a181d3e6153d6a5f56305239dc8b7c02b2b2c7a80f0c7da275503fb266f641149cd826406ff56603162a9d2238eda6f1cb12924b63eab17c
+  languageName: node
+  linkType: hard
+
 "express-handlebars@npm:^5.3.2":
   version: 5.3.2
   resolution: "express-handlebars@npm:5.3.2"
@@ -5945,6 +5981,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-relay@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "graphql-relay@npm:0.6.0"
+  dependencies:
+    prettier: ^1.16.0
+  peerDependencies:
+    graphql: ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0-b || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0
+  checksum: 0027d8c84463626e536ae4d30f127cfee09faeff08e5833616e9634b921ed1321a722543a7462fac230351b65841c31ea630220e0800ef5d078099c2b6a7e6a1
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^14.5.3 || ^15.0.0, graphql@npm:^15.5.0":
+  version: 15.5.0
+  resolution: "graphql@npm:15.5.0"
+  checksum: 789cdcb069a3e00592e779002217a6bc5fd09efad63ee8c4190c4b3ea96c89010e74f085fb1cba876a0bb0e324e01df2eddb84d79dca90a28e582bc425fef9ef
+  languageName: node
+  linkType: hard
+
 "growly@npm:^1.3.0":
   version: 1.3.0
   resolution: "growly@npm:1.3.0"
@@ -6223,20 +6277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "http-errors@npm:1.8.0"
-  dependencies:
-    depd: ~1.1.2
-    inherits: 2.0.4
-    setprototypeof: 1.2.0
-    statuses: ">= 1.5.0 < 2"
-    toidentifier: 1.0.0
-  checksum: 95ad78508b2929923dac83edd7ce513db87c4214df83a6664559810566da73d9a6892ffdcd76738d9ab9d33172b4c7e304436a4031d471569a7344396fea0ecb
-  languageName: node
-  linkType: hard
-
-"http-errors@npm:~1.7.2":
+"http-errors@npm:1.7.3, http-errors@npm:~1.7.2":
   version: 1.7.3
   resolution: "http-errors@npm:1.7.3"
   dependencies:
@@ -6246,6 +6287,19 @@ __metadata:
     statuses: ">= 1.5.0 < 2"
     toidentifier: 1.0.0
   checksum: 563ae4a3f19c89029212922bade6ffcd0e4b7fa52e539f08c8f6941de7eaccb00bf76cb7692662192f2f0d567d4ac1f9d6a3d0ee70b166c8540cf791497f90ea
+  languageName: node
+  linkType: hard
+
+"http-errors@npm:1.8.0, http-errors@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "http-errors@npm:1.8.0"
+  dependencies:
+    depd: ~1.1.2
+    inherits: 2.0.4
+    setprototypeof: 1.2.0
+    statuses: ">= 1.5.0 < 2"
+    toidentifier: 1.0.0
+  checksum: 95ad78508b2929923dac83edd7ce513db87c4214df83a6664559810566da73d9a6892ffdcd76738d9ab9d33172b4c7e304436a4031d471569a7344396fea0ecb
   languageName: node
   linkType: hard
 
@@ -8409,6 +8463,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moment-timezone@npm:^0.5.33":
+  version: 0.5.33
+  resolution: "moment-timezone@npm:0.5.33"
+  dependencies:
+    moment: ">= 2.9.0"
+  checksum: d4e72a3514a2885ab26b1cbc640e2f4785c997f9de28bb48bf3994ef137b0a560ca8f07eb07f11121e1223eef0c3bce4bc647b911111481a6a066bbc61285f99
+  languageName: node
+  linkType: hard
+
+"moment@npm:>= 2.9.0":
+  version: 2.29.1
+  resolution: "moment@npm:2.29.1"
+  checksum: 86729013febf7160de5b93da69273dd304d674b0224f9544b3abd09a87671ddd2cdd57598261ce57588910d63747ffd5590965e83c790d8bf327083c0e0a06e0
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -9257,6 +9327,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^1.16.0":
+  version: 1.19.1
+  resolution: "prettier@npm:1.19.1"
+  bin:
+    prettier: ./bin-prettier.js
+  checksum: e5fcdfe5e159ef5c5480245353cf8fb5bbd1b8afff266f31f281641825238f8a645e58472f77cd75a09ccc45d44c335466e8d901ec138c2bda05e1bd6ea1077c
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^2.3.0":
   version: 2.3.0
   resolution: "prettier@npm:2.3.0"
@@ -9635,6 +9714,18 @@ __metadata:
     iconv-lite: 0.4.24
     unpipe: 1.0.0
   checksum: 46dc02f8b4f358786d41e18fb55533fbe4702d390e22bbe2b9c98c88dec41cab23ea2315f3ae0bf4bc0213a2872c89943d3df6857f4e21f996ea9d2d92f1bcaa
+  languageName: node
+  linkType: hard
+
+"raw-body@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "raw-body@npm:2.4.1"
+  dependencies:
+    bytes: 3.1.0
+    http-errors: 1.7.3
+    iconv-lite: 0.4.24
+    unpipe: 1.0.0
+  checksum: dc56e010d276f2fc3a17c2dd071f857917cd3734f64051488c845a9878a1eb47e03a9644861f135568d8ab4c2062072700b73060956b36f3a987025bc809402f
   languageName: node
   linkType: hard
 

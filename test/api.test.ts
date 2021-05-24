@@ -8,12 +8,28 @@ import { api } from "../api";
 const app = express();
 app.use(api);
 
-test("/api/", async function () {
-  expect.assertions(2);
-  await request(app)
-    .get("/api/")
-    .then((res) => {
-      expect(res.status).toBe(200);
-      expect(res.text).toMatchInlineSnapshot(`"Hello from API!"`);
-    });
+describe("Fetch logged-in user", function () {
+  test("as unauthenticated user", async function () {
+    const res = await request(app)
+      .get("/api")
+      .accept("application/json")
+      .query({
+        query: `
+          query {
+            me {
+              id
+              email
+            }
+          }
+        `,
+      });
+    expect(res.status).toBe(200);
+    expect(res.text).toMatchInlineSnapshot(`
+      "{
+        \\"data\\": {
+          \\"me\\": null
+        }
+      }"
+    `);
+  });
 });

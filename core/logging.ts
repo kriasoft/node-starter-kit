@@ -3,6 +3,7 @@
 
 import { Logging } from "@google-cloud/logging";
 import { Request } from "express";
+import type { GraphQLParams } from "express-graphql";
 import PrettyError from "pretty-error";
 import env from "../env";
 
@@ -20,7 +21,7 @@ const pe = new PrettyError();
 export function reportError(
   err: Error,
   req: Request,
-  context?: Record<string, unknown>
+  context?: GraphQLParams | Record<string, unknown>
 ): void {
   if (!env.isProduction) {
     console.error(pe.render(err));
