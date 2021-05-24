@@ -63,7 +63,7 @@ export const callback: RequestHandler = async function (req, res, next) {
       email_verified: profile.email_verified,
       name: profile.name,
       picture: profile.picture,
-      credentials: (tokens as unknown) as Record<string, string>,
+      credentials: tokens as unknown as Record<string, string>,
     });
 
     res.render("auth-callback", { data: { user }, layout: false });
