@@ -2,4 +2,5 @@
 /* SPDX-License-Identifier: MIT */
 
 export * from "./map";
+export * from "./relay";
 export * from "./validator";
