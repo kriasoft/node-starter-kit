@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const secret = "~vD3m!st#`K~A;8.";
 
-type State = { [key: string]: string };
+type State = { [key: string]: string | number };
 
 /**
  * Creates an OAuth 2.0 state string using JWT.

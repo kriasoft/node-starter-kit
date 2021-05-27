@@ -14,6 +14,7 @@ import { Context } from "../context";
 import { dateField } from "./fields";
 import { IdentityType } from "./identity";
 import { nodeInterface } from "./node";
+import { PictureType } from "./picture";
 
 export const UserType = new GraphQLObjectType<User, Context>({
   name: "User",
@@ -50,7 +51,7 @@ export const UserType = new GraphQLObjectType<User, Context>({
     },
 
     picture: {
-      type: GraphQLString,
+      type: PictureType,
     },
 
     timeZone: {

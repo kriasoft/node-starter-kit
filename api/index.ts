@@ -6,7 +6,7 @@ import express from "express";
 import { NotFound } from "http-errors";
 import { auth } from "../auth";
 import { handleError } from "./errors";
-import { graphql } from "./graphql";
+import { graphql, updateSchema } from "./graphql";
 import { withViews } from "./views";
 
 export const api = withViews(express());
@@ -40,6 +40,8 @@ api.use(handleError);
  * NOTE: This block will be removed from production build by Rollup.
  */
 if (process.env.NODE_ENV === "development") {
+  updateSchema();
+
   const port = process.env.PORT ?? 8080;
   const envName = chalk.greenBright(process.env.APP_ENV);
   const dbName = chalk.greenBright(process.env.PGDATABASE);
