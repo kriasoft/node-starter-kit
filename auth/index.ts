@@ -15,9 +15,12 @@ auth.use(session);
 auth.use("/auth", function (req, res, next) {
   // Ensure that OAuth 2.0 redirect URI will work from behind a proxy
   const [, provider] = req.path.split("/");
-  req.app.locals.redirect_uri = env.isProduction
-    ? `${env.APP_ORIGIN}/auth/${provider}/return`
-    : `${req.protocol}://${req.get("host")}/auth/${provider}/return`;
+  const origin =
+    req.get("origin") ||
+    (env.isProduction
+      ? env.APP_ORIGIN
+      : `${req.protocol}://${req.get("host")}`);
+  req.app.locals.redirect_uri = `${origin}/auth/${provider}/return`;
   // Disable cache for authentication requests
   res.setHeader("Cache-Control", "no-store");
   next();

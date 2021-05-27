@@ -34,7 +34,7 @@ spawn(
     NAME,
     `--region=${REGION}`,
     `--allow-unauthenticated`,
-    `--entry-point=${NAME}`,
+    `--entry-point=api`,
     `--memory=1GB`,
     `--runtime=nodejs14`,
     `--source=./.build`,
