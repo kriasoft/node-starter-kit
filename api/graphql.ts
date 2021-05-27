@@ -3,7 +3,15 @@
 
 import type { Request } from "express";
 import { graphqlHTTP } from "express-graphql";
-import { formatError, GraphQLObjectType, GraphQLSchema } from "graphql";
+import fs from "fs";
+import {
+  formatError,
+  GraphQLObjectType,
+  GraphQLSchema,
+  printSchema,
+} from "graphql";
+import { noop } from "lodash";
+import path from "path";
 import { reportError } from "../core";
 import env from "../env";
 import { Context } from "./context";
@@ -12,6 +20,9 @@ import * as queries from "./queries";
 import { nodeField, nodesField } from "./types/node";
 import { ValidationError } from "./utils";
 
+/**
+ * GraphQL API schema.
+ */
 export const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Root",
@@ -48,3 +59,9 @@ export const graphql = graphqlHTTP((req, res, params) => ({
     return formatError(err);
   },
 }));
+
+export function updateSchema(cb: fs.NoParamCallback = noop): void {
+  const file = path.resolve(__dirname, "../schema.graphql");
+  const output = printSchema(schema, { commentDescriptions: true });
+  fs.writeFile(file, output, { encoding: "utf-8" }, cb);
+}

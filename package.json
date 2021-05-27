@@ -18,6 +18,7 @@
     "db:backup": "node ./scripts/db-backup",
     "db:restore": "node ./scripts/db-restore",
     "db:repl": "node --experimental-repl-await ./scripts/repl",
+    "update-schema": "node ./scripts/update-schema",
     "update-types": "node ./scripts/update-types",
     "psql": "node ./scripts/psql",
     "repl": "node --experimental-repl-await ./scripts/repl",
