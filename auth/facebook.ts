@@ -60,7 +60,7 @@ export const callback: RequestHandler = async function (req, res, next) {
       .json<{ id: string; name: string; email?: string; picture?: any }>();
 
     // Link OAuth credentials with the user account.
-    const user = await authorize(req, {
+    const me = await authorize(req, {
       id: profile.id,
       provider: IdentityProvider.Facebook,
       name: profile.name,
@@ -70,7 +70,7 @@ export const callback: RequestHandler = async function (req, res, next) {
       credentials: token,
     });
 
-    res.render("auth-callback", { data: { user }, layout: false });
+    res.render("auth-callback", { data: { me }, layout: false });
   } catch (err) {
     next(err);
   }

@@ -2,6 +2,7 @@
 /* SPDX-License-Identifier: MIT */
 
 import { Request } from "express";
+import { toGlobalId } from "graphql-relay";
 import type { Identity, User } from "../db";
 import db from "../db";
 
@@ -17,7 +18,7 @@ export default async function authorize(
     name?: string | null;
     picture?: string | Record<string, unknown> | null;
   }
-): Promise<User | null> {
+): Promise<Record<string, unknown> | null> {
   // Get the currently authenticated user from session
   let user: User | null | undefined = req.user;
 
@@ -113,5 +114,19 @@ export default async function authorize(
 
   user = await req.signIn(user);
 
-  return user && { ...user, password: null };
+  return (
+    user && {
+      id: toGlobalId("User", user.id),
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      emailVerified: user.email_verified,
+      picture: user.picture,
+      timeZone: user.time_zone,
+      locale: user.locale,
+      createdAt: user.created_at,
+      updatedAt: user.updated_at,
+      lastLogin: user.last_login,
+    }
+  );
 }

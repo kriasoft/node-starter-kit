@@ -56,7 +56,7 @@ export const callback: RequestHandler = async function (req, res, next) {
     }
 
     // Link OAuth credentials with the user account.
-    const user = await authorize(req, {
+    const me = await authorize(req, {
       id: userId,
       provider: IdentityProvider.Google,
       email: profile.email,
@@ -66,7 +66,7 @@ export const callback: RequestHandler = async function (req, res, next) {
       credentials: tokens as unknown as Record<string, string>,
     });
 
-    res.render("auth-callback", { data: { user }, layout: false });
+    res.render("auth-callback", { data: { me }, layout: false });
   } catch (err) {
     next(err);
   }
