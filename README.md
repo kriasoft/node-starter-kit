@@ -24,6 +24,9 @@ Use it as an API server for your front-end app.
 - Application bundling with Rollup as an optimization technique for serverless deployments
 - Rebuilds and restarts the app on changes when running locally
 - Pre-configured for `local`, `dev`, `test`, and `prod` environments
+- The ongoing design and development is supported by these wonderful companies:
+
+<a href="https://reactstarter.com/s/1"><img src="https://reactstarter.com/s/1.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/s/2"><img src="https://reactstarter.com/s/2.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/s/3"><img src="https://reactstarter.com/s/3.png" height="60" /></a>
 
 ![](https://files.tarkus.me/graphql-api.png)
 
@@ -173,6 +176,10 @@ Where `<env>` is the target environment, e.g. `APP_ENV=prod yarn deploy`.
 - `yarn set version latest` — Bump Yarn to the latest version
 - `yarn upgrade-interactive` — Update Node.js modules (dependencies)
 - `yarn pnpify --sdk vscode` — Update TypeScript, ESLint, and Prettier settings in VSCode
+
+## Backers
+
+<a href="https://reactstarter.com/b/1"><img src="https://reactstarter.com/b/1.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/2"><img src="https://reactstarter.com/b/2.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/3"><img src="https://reactstarter.com/b/3.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/4"><img src="https://reactstarter.com/b/4.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/5"><img src="https://reactstarter.com/b/5.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/6"><img src="https://reactstarter.com/b/6.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/7"><img src="https://reactstarter.com/b/7.png" height="60" /></a>&nbsp;&nbsp;<a href="https://reactstarter.com/b/8"><img src="https://reactstarter.com/b/8.png" height="60" /></a>
 
 ## Related Projects
 
