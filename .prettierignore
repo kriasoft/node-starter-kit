@@ -1,5 +1,5 @@
 .build
 .cache
 .yarn
-.pnp.js
+.pnp.cjs
 tsconfig.json

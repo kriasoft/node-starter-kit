@@ -53,7 +53,7 @@ const config = {
           },
         },
         {
-          src: [".pnp.js", ".yarnrc.yml", "yarn.lock"],
+          src: [".pnp.cjs", ".yarnrc.yml", "yarn.lock"],
           dest: ".build",
           copyOnce: true,
         },
@@ -86,7 +86,7 @@ const config = {
 
     isWatch &&
       run({
-        execArgv: ["-r", "./.pnp.js", "-r", "source-map-support/register"],
+        execArgv: ["-r", "./.pnp.cjs", "-r", "source-map-support/register"],
       }),
   ],
 
