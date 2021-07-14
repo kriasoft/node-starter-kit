@@ -22,7 +22,13 @@ type Root {
 
   # Find user by username or email.
   user(username: String, email: String): User
-  users(after: String, first: Int): UserConnection
+  users(
+    # Returns the items in the list that come after the specified cursor.
+    after: String
+
+    # Returns the first n items from the list.
+    first: Int
+  ): UserConnection
 }
 
 # An object with an ID
@@ -112,10 +118,7 @@ type Mutation {
   signOut: String
 
   # Updates the user account.
-  updateUser(
-    input: UpdateUserInput
-    dryRun: Boolean! = false
-  ): UpdateUserPayload
+  updateUser(input: UpdateUserInput, dryRun: Boolean! = false): UpdateUserPayload
 }
 
 type UpdateUserPayload {

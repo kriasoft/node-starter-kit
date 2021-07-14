@@ -1,5 +1,6 @@
 .build
 .cache
 .yarn
-.pnp.js
+.pnp.cjs
+schema.graphql
 tsconfig.json

@@ -7,6 +7,8 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import run from "@rollup/plugin-run";
+import spawn from "cross-spawn";
+import fs from "fs-extra";
 import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
 import "./env/config";
@@ -32,7 +34,7 @@ const config = {
   },
 
   plugins: [
-    del({ targets: ".build/*" }),
+    del({ targets: [".build/*", ".build/.yarn/releases"], runOnce: true }),
 
     copy({
       targets: [
@@ -53,7 +55,7 @@ const config = {
           },
         },
         {
-          src: [".pnp.js", ".yarnrc.yml", "yarn.lock"],
+          src: [".pnp.cjs", ".yarnrc.yml", "yarn.lock"],
           dest: ".build",
           copyOnce: true,
         },
@@ -63,6 +65,7 @@ const config = {
           copyOnce: true,
         },
       ],
+      copyOnce: true,
     }),
 
     nodeResolve({
@@ -86,8 +89,27 @@ const config = {
 
     isWatch &&
       run({
-        execArgv: ["-r", "./.pnp.js", "-r", "source-map-support/register"],
+        execArgv: ["-r", "./.pnp.cjs", "-r", "source-map-support/register"],
       }),
+
+    // Prepare the output bundle for Yarn Zero-install
+    !isWatch && {
+      name: "yarn",
+      async writeBundle() {
+        await new Promise((resolve) => {
+          spawn("yarn", ["install"], {
+            stdio: ["ignore", "inherit", "ignore"],
+            cwd: "./.build",
+            env: { ...process.env, YARN_ENABLE_IMMUTABLE_INSTALLS: "false" },
+          }).on("exit", (code) => {
+            if (code !== 0) process.exit(code);
+            resolve();
+          });
+        });
+        await fs.remove(".build/.yarn/unplugged");
+        await fs.remove(".build/.yarn/install-state.gz");
+      },
+    },
   ],
 
   external: Object.keys(pkg.dependencies),
