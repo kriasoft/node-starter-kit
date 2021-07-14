@@ -118,10 +118,7 @@ type Mutation {
   signOut: String
 
   # Updates the user account.
-  updateUser(
-    input: UpdateUserInput
-    dryRun: Boolean! = false
-  ): UpdateUserPayload
+  updateUser(input: UpdateUserInput, dryRun: Boolean! = false): UpdateUserPayload
 }
 
 type UpdateUserPayload {

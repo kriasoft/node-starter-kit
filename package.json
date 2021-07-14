@@ -7,7 +7,7 @@
   "scripts": {
     "setup": "husky install",
     "start": "rollup -c --watch",
-    "build": "rollup -c && (cd .build && yarn && rm .yarn/*.* && rm -R .yarn/unplugged)",
+    "build": "rollup -c",
     "lint": "eslint --cache --report-unused-disable-directives .",
     "test": "jest",
     "db:create": "node ./scripts/db-create && knex migrate:latest",
@@ -92,6 +92,7 @@
     "envars": "^0.1.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
+    "fs-extra": "^10.0.0",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
     "knex-types": "^0.2.0",
